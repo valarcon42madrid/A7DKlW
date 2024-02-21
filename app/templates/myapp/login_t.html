@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" href="static/ru.css"/>
+</head>
+<body>
+
+<h1>¡Bienvenido!</h1>
+<h1>Entrar</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br/>
+    <button type="submit">Entrar</button>
+    <br/>
+    <a href="{% url 'signup' %}">No estoy registrado</a>
+</form>
+<br/>
+
+</body>
+</html>

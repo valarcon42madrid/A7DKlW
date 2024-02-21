@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" href="static/ru.css"/>
+</head>
+<body>
+
+<h1>Web Pong</h1>
+
+{% if request.user.is_authenticated %}
+  <p>Usuario: {{ request.user.username }}</p>
+  <p><a href="{% url 'logout' %}">Salir</a></p>
+  <p><a href="{% url 'arranque' %}">Partido rápido</a></p>
+{% else %}
+  <p><a href="{% url 'login' %}">Entrar</a></p>
+  <p><a href="{% url 'signup' %}">Registrarse</a></p>
+  <br/>
+{% endif %}
+
+</body>
+</html>
