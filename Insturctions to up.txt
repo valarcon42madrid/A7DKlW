@@ -2,4 +2,4 @@ docker-compose up -d --build
 
 
 docker-compose exec web python manage.py migrate --noinput
-(una vez, para levantar el volumen de la base de datos y poder conservar los usuarios entre docker-compose down y up)
+(para levantar el volumen de la base de datos y poder conservar los usuarios entre docker-compose down y up)
