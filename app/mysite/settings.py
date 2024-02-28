@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for mysite project.
 
@@ -23,13 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
 
-# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
-# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
-
-ALLOWED_HOSTS = ["*"]
+#ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.42']
+ALLOWED_HOSTS = ['*']
 
 # If you have set the CSRF_COOKIE_SECURE to be True in your settings file, then the cookie will be marked as "secure"
 # and therefore will need an HTTPS connection.
@@ -38,7 +37,9 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'myapp',    
+    'base', 
+    'partidos', 
+    'torneos',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -77,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -99,6 +100,7 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -117,18 +119,39 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'es' # 'en-us'
+
+#LANGUAGES = [
+#   ('en', 'English'),
+#   ('es', 'Spanish'),
+#]
+
+LANGUAGE_CODE = 'en' # lenguaje base
+
+from django.utils.translation import gettext_lazy as _
+
+# Los textos se traducen con la función gettext_lazy
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    ('fr', _('French')),
+)
+
+#LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+
+USE_I18N = True # permite la traducción
+USE_L10N = True # números y fechas locales
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
-
 USE_TZ = False # antes True !!!!! con True no puedo restar datetimes
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

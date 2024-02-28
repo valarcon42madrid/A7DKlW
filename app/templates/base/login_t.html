@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+{% load i18n %}
+<head>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" href="static/base.css"/>
+</head>
+<body>
+
+<h1>{% trans "Welcome!" %}</h1>
+<h1>{% trans "Login" %}</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <p><button type="submit">{% trans "Login" %}</button></p>
+    <p><a href="{% url 'signup' %}">{% trans "I haven't signedup yet" %}</a></p>
+</form>
+
+</body>
+</html>

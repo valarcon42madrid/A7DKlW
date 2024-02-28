@@ -19,22 +19,30 @@ from django.urls import path
 
 from django.views.decorators.csrf import csrf_exempt #nuevo
 
-from myapp import views, ru_views
+from base import views as ba_views
+from torneos import views as to_views
+from partidos import views as pa_views
 
 urlpatterns = [
     #path('admin/', admin.site.urls), # ya estaba
-    path('', ru_views.home, name='home'),
-    path('login', ru_views.user_login, name='login'),
-    path('signup', ru_views.user_signup, name='signup'),
-    path('logout', ru_views.user_logout, name='logout'),
-    #path('', views.mi_html1), # enviar fichero de prueba
-    #path('h2', views.mi_html2), # enviar fichero de prueba
-    #path('h3', views.mi_html3), # enviar fichero de prueba
-    #path('h4', views.mi_html4), # enviar fichero de prueba
-    #path('h5', views.mi_html5), # enviar fichero de prueba
-    path("arranque", views.fun_arranque, name='arranque'), 
-    path("aj_keys", csrf_exempt(views.fun_keys)),
-    path('aj_status', csrf_exempt(views.fun_status)),
+    path('', ba_views.home, name='home'),
+    path('login', ba_views.user_login, name='login'),
+    path('signup', ba_views.user_signup, name='signup'),
+    path('logout', ba_views.user_logout, name='logout'),
+    path('change_es', ba_views.change_es, name='es'),
+    path('change_en', ba_views.change_en, name='en'),
+    path('change_fr', ba_views.change_fr, name='fr'),
+    path('torneos_inscripcion_list', to_views.torneos_inscripcion_list, name='torneos_inscripcion_list'), 
+    path('torneos_inscripcion', to_views.torneos_inscripcion, name='torneos_inscripcion'), 
+    path('torneos_admin', to_views.torneos_admin, name='torneos_admin'), 
+    path('torneos_delete', to_views.torneos_delete, name='torneos_delete'), 
+    path('torneos_edit', to_views.torneos_edit, name='torneos_edit'), 
+    path('torneos_maintenance', to_views.torneos_maintenance, name='torneos_maintenance'), # quitar y pasa a home
+    path("arranque", pa_views.fun_arranque, name='arranque'), 
+    path("aj_keys", csrf_exempt(pa_views.fun_keys)),
+    path('aj_status', csrf_exempt(pa_views.fun_status)),
+    path('partidos_mlist', pa_views.partidos_mlist, name='partidos_mlist'),
+    path('partidos_list', pa_views.partidos_list, name='partidos_list'),
 ]
 
 """
@@ -44,6 +52,7 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
 """
 
+# partidos
 # views.fun_arranque es la funcion fun_arranque del modulo view
 # arranque = url que arranca el partido
 # key     = url para comunicacion ajax entre el javascript del navegador y el servidor.
