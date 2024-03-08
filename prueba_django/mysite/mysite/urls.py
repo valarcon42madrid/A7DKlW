@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt #nuevo
 
 from base import views as ba_views
@@ -24,7 +24,7 @@ from torneos import views as to_views
 from partidos import views as pa_views
 
 urlpatterns = [
-    #path('admin/', admin.site.urls), # ya estaba
+    path('admin/', admin.site.urls),
     path('', ba_views.home, name='home'),
     path('login', ba_views.user_login, name='login'),
     path('signup', ba_views.user_signup, name='signup'),
