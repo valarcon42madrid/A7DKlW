@@ -1,8 +1,0 @@
-docker build -f ./mysite/Dockerfile -t mysite:latest ./mysite
-
-
-
-docker run -d \
-    -p 8006:8000 \
-    -e "SECRET_KEY=please_change_me" -e "DEBUG=1" -e "DJANGO_ALLOWED_HOSTS=*" \
-    mysite python /usr/src/mysite/manage.py runserver 0.0.0.0:8000
