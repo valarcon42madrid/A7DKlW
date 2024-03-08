@@ -1,0 +1,20 @@
+
+LEVANTAR CON: 
+
+docker-compose -f docker-compose.prod.yml up -d --build
+
+(y se puede hacer migraciones, pero no es necesario salvo que cambies algo):
+
+docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+
+
+
+
+SI FALLA (Que ya no debería) siempre podeis usar el método provisional:
+
+docker build -f ./mysite/Dockerfile -t mysite:latest ./mysite
+
+docker run -d \
+    -p 8006:8000 \
+    -e "SECRET_KEY=please_change_me" -e "DEBUG=1" -e "DJANGO_ALLOWED_HOSTS=*" \
+    mysite python /usr/src/app/manage.py runserver 0.0.0.0:8000
