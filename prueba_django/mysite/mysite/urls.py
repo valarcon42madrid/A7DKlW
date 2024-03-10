@@ -22,6 +22,7 @@ from django.views.decorators.csrf import csrf_exempt #nuevo
 from base import views as ba_views
 from torneos import views as to_views
 from partidos import views as pa_views
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,8 +46,7 @@ urlpatterns = [
     path('aj_status', csrf_exempt(pa_views.fun_status)),
     path('partidos_mlist', pa_views.partidos_mlist, name='partidos_mlist'),
     path('partidos_list', pa_views.partidos_list, name='partidos_list'),
-]
-
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # partidos
 # views.fun_arranque es la funcion fun_arranque del modulo view
 # arranque = url que arranca el partido
