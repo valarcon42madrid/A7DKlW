@@ -7,7 +7,7 @@ services:
     volumes:
       - ./mysite/:/usr/src/mysite/
     ports:
-        - "8000:8000"
+        - "8000:80"
     env_file:
       - ./.env.dev
     depends_on:
@@ -21,11 +21,10 @@ services:
       - POSTGRES_PASSWORD=hello_django
       - POSTGRES_DB=hello_django_dev
   nginx:
-    image: nginx:latest
+    build: ./nginx
     ports:
-        - 80:80
+      - 80:80
     depends_on:
       - web
-
 volumes:
   postgres_data:

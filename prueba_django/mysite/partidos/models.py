@@ -38,6 +38,7 @@ class Partido_enJuego(models.Model):
 	empezado = models.BooleanField(default=False) # si true partido empezado
 	terminado = models.BooleanField(default=False) # si true partido terminado
 	comienzo = models.DateTimeField(null=True, blank=True, default=None) # comienzo del partido
+	rearranque =  models.DateTimeField(null=True, blank=True, default=None) 
 	fin = models.DateTimeField(null=True, blank=True, default=None) # final del partido
 	desconectado = models.BooleanField(default=False) # si los clientes dejan de pedir el estado durante un tiempo se desconecta
 	jugador1_marcador = models.IntegerField(default=0)	# marcador de puntos
