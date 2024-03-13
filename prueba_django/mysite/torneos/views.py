@@ -38,7 +38,7 @@ def torneos_inscripcion(request):
 def torneos_admin(request):
 	torneos_mantenimiento2()
 	activate_language(request)
-	if not request.user.is_superuser: 
+	if not request.user.is_staff: 
 		return
 	t = datetime.datetime.now()
 	torneos = Torneo.objects.all().order_by('-comienzo_partidos')
@@ -47,7 +47,7 @@ def torneos_admin(request):
 	return render(request, 'torneos/torneos_admin_t.html', context)
 		
 def torneos_delete(request):
-	if not request.user.is_superuser: 
+	if not request.user.is_staff: 
 		return
 	idTorneo = request.GET.get('idTorneo')
 	torneo = Torneo.objects.get(id=idTorneo)
@@ -56,7 +56,7 @@ def torneos_delete(request):
 	
 def torneos_edit(request):
 	activate_language(request)
-	if not request.user.is_superuser: 
+	if not request.user.is_staff: 
 		return
 	if request.method == 'POST':
 		#print("edición terminada -> hay que salvar (modificar o insertar nuevo)")
