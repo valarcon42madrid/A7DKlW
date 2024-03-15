@@ -13,6 +13,7 @@
 </head>
 <body>
 <!-- MENU NAVIGATION BAR -->
+{% if request.user.is_authenticated %}
 <div class="navigation">
   <ul>
     <li class="list">
@@ -52,6 +53,7 @@
       </a>
     </li>
   </ul>
+{% endif %}
   <p>
     <a href="{% url 'en' %}">English</a>&nbsp;&nbsp;&nbsp;
     <a href="{% url 'es' %}">Español</a>&nbsp;&nbsp;&nbsp;
